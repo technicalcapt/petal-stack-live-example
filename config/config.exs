@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-import Mix.Config
+import Config
 
 config :peta_stack_example,
   ecto_repos: [PetaStackExample.Repo]

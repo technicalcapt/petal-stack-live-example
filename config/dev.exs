@@ -1,4 +1,4 @@
-import Mix.Config
+import Config
 
 # Configure your database
 config :peta_stack_example, PetaStackExample.Repo,

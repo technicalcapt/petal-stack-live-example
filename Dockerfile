@@ -7,6 +7,9 @@ FROM elixir:1.11.2-alpine AS build
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3
 
+# set build ENV
+ENV MIX_ENV=prod
+
 # prepare build dir
 WORKDIR /app
 
@@ -14,11 +17,8 @@ WORKDIR /app
 RUN mix local.hex --force && \
     mix local.rebar --force
 
-# Copy all files wich is not excluded by .dockerignore
+# Copy all files which are not excluded by .dockerignore
 COPY . ./
-
-# set build ENV
-ENV MIX_ENV=prod
 
 # install mix dependencies
 RUN mix do deps.get, deps.compile
@@ -48,7 +48,10 @@ ENV HOME=/app
 
 COPY --chown=nobody:nobody ./docker-entrypoint.sh ./
 
+RUN ["chmod", "+x", "docker-entrypoint.sh"]
+
 ENTRYPOINT ["./docker-entrypoint.sh"]
+
 CMD ["./bin/peta_stack_example"]
 
 # To seed data need to execute next command inside container:

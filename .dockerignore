@@ -39,6 +39,3 @@ support.iml
 
 # Ignore git files
 .git
-
-# Ignore env file
-.env
