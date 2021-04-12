@@ -14,7 +14,7 @@ defmodule PetaStackExample.MixProject do
       releases: [
         peta_stack_example: [
           include_executables_for: [:unix],
-          applications: [runtime_tools: :permanent, ssl: :permanent]
+          applications: [runtime_tools: :permanent]
         ]
       ]
     ]
@@ -26,7 +26,7 @@ defmodule PetaStackExample.MixProject do
   def application do
     [
       mod: {PetaStackExample.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ssl]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
