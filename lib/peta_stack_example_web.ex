@@ -23,6 +23,7 @@ defmodule PetaStackExampleWeb do
 
       import Plug.Conn
       import PetaStackExampleWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias PetaStackExampleWeb.Router.Helpers, as: Routes
     end
   end
@@ -37,6 +38,8 @@ defmodule PetaStackExampleWeb do
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
+      import Phoenix.LiveView.Helpers
+
       # Include shared imports and aliases for views
       unquote(view_helpers())
     end
@@ -48,6 +51,7 @@ defmodule PetaStackExampleWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
@@ -55,6 +59,23 @@ defmodule PetaStackExampleWeb do
     quote do
       use Phoenix.Channel
       import PetaStackExampleWeb.Gettext
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {PetaStackExampleWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
     end
   end
 
