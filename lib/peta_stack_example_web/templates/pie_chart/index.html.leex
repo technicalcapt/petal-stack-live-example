@@ -24,9 +24,9 @@
 </div>
 <!-- Pie chart -->
 <div class="bg-white py-16 px-64">
-  <div class="grid grid-rows-1 grid-flow-col gap-6">
+  <div class="grid grid-cols-2 grid-flow-col">
     <!-- Table list -->
-    <div class="shadow border border-gray-200 rounded-sm">
+    <div class="col-span-1 shadow-md border border-gray-200 rounded-md w-11/12">
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr class="flex justify-between px-6 uppercase text-gray-700">
@@ -45,8 +45,9 @@
       </table>
     </div>
     <!-- Pie chart -->
-    <div class="">
-
+    <div class="col-span-1 flex justify-center items-center w-80 h-80 border border-gray-200 rounded-md shadow-md relative py-3">
+      <h5 class="text-xl text-gray-700 absolute top-0 left-0 mt-1 ml-2">Quality</h5>
+      <canvas id="user-rating-canvas" width="300" height="300" phx-hook="InitChart" data-qualities="<%= @str_qualities %>"></canvas>
     </div>
   </div>
 </div>

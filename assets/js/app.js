@@ -17,9 +17,67 @@ import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 import topbar from "topbar"
 import "alpinejs"
+import Chart from 'chart.js/auto'
+let Hooks = {}
+
+Hooks.InitChart = {
+  mounted() {
+    let dataStr = this.el.dataset.qualities
+    let data = dataStr.split(",").map(str => parseInt(str))
+    console.log(data, "data")
+    let ctx = this.el.getContext("2d")
+    let pieChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: ["A-I", "J-R", "S-Z"],
+        datasets: [{
+          label: "User Ratings",
+          data: data,
+          backgroundColor: [
+            'rgba(226, 137, 242, 1)',
+            'rgba(0, 0, 0, 1)',
+            'rgba(133, 92, 248, 1)'
+          ],
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        layout: {
+          padding: {
+            top: 24,
+            bottom: 24
+          }
+        }
+      }
+    })
+  },
+  updated() {
+    let dataStr = this.el.dataset.qualities
+    let data = dataStr.split(",").map(str => parseInt(str))
+    console.log(data, "data")
+    let ctx = this.el.getContext("2d")
+    let pieChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: ["A-I", "J-R", "S-Z"],
+        datasets: [{
+          label: "User Ratings",
+          data: data,
+          backgroundColor: [
+            'rgba(226, 137, 242, 1)',
+            'rgba(0, 0, 0, 1)',
+            'rgba(133, 92, 248, 1)'
+          ],
+          hoverOffset: 4
+        }]
+      },
+    })
+  }
+}
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
+  hooks: Hooks,
   params: {_csrf_token: csrfToken},
   dom: {
     onBeforeElUpdated(from, to){
