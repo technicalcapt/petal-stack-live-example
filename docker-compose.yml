@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  web:
+
+    build:
+      context: .
+    environment:
+      SECRET_KEY_BASE: GMCrzVYSFW572qYL0QNSBkhI8T5Lzg1vDIE4D6r4KWvLgfmQqjXfr0WxkNFxs98u
+      DATABASE_URL: ecto://postgres:postgres@db/peta_stack_example_dev
+      PORT: 4001
+    ports:
+      - "4001:4001"
+    depends_on:
+      - db
+
+  db:
+
+    image: postgres:10.14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: peta_stack_example_dev
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    expose:
+      - "5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
