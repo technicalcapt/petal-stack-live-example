@@ -1,0 +1,52 @@
+<!-- Form -->
+<div class="bg-indigo-900 text-white flex justify-center items-center py-3">
+  <%= form_for @changeset, "#", [phx_submit: :create_user_rating, as: :rating, id: "user-rating-form"], fn f -> %>
+    <div class="grid grid-rows-1 grid-flow-col gap-4">
+      <div class="">
+        <%= label f, :name, "Name", class: "block" %>
+        <%= text_input f, :name, class: "rounded-md text-gray-500" %>
+      </div>
+
+      <div class="">
+        <%= label f, :quality, "Quality (%)", class: "block" %>
+        <%= number_input f, :quality, class: "w-20 rounded-md text-gray-500" %>
+      </div>
+
+      <div class="mt-2">
+        <button type="submit" name="save-button" class="bg-indigo-500 px-4 py-2 rounded-md">Save</button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-6 ml-16">
+  <h3 class="text-gray-700 text-2xl">User Ratings Pie Chart</h3>
+</div>
+<!-- Pie chart -->
+<div class="bg-white py-16 px-64">
+  <div class="grid grid-rows-1 grid-flow-col gap-6">
+    <!-- Table list -->
+    <div class="shadow border border-gray-200 rounded-sm">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr class="flex justify-between px-6 uppercase text-gray-700">
+            <th>Name</th>
+            <th>Quality</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <%= for user_rating <- @user_ratings do %>
+            <tr class="flex justify-between px-6">
+              <td><%= user_rating.name %></td>
+              <td><%= user_rating.quality %>%</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pie chart -->
+    <div class="">
+
+    </div>
+  </div>
+</div>

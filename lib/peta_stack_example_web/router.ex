@@ -14,10 +14,10 @@ defmodule PetaStackExampleWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PetaStackExampleWeb do
+  scope "/", PetaStackExampleWeb.Live do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", PieChart, :index
   end
 
   # Other scopes may use custom stacks.
