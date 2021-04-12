@@ -1,20 +1,17 @@
-# PetaStackExample
+# How to run project
 
-To start your Phoenix server:
+1. Install docker (https://docs.docker.com/engine/install/) and docker-compose
+2. Create `.env` file to add your environment variable to the following
+```
+DATABASE_URL=postgres://postgres:postgres@db:5432/peta_stack_example_dev
+SECRET_KEY_BASE=YOUR_SECRET_KEY_BASE
+```
+You can generate secret key by running: `mix phx.gen.secret`
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+3. Move to the project root (current directory) and execute below command in the shell
+`$ docker-compose up`
+3. Navigate to localhost:4001 in the browser
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+# You can find live app via Heroku
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+https://polar-fortress-26763.herokuapp.com/
