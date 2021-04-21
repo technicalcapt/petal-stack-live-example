@@ -8,10 +8,8 @@ SECRET_KEY_BASE=YOUR_SECRET_KEY_BASE
 ```
 You can generate secret key by running: `mix phx.gen.secret`
 
-3. Move to the project root (current directory) and execute below command in the shell
-`$ docker-compose up`
-3. Navigate to localhost:4001 in the browser
-
-# You can find live app via Heroku
-
-https://polar-fortress-26763.herokuapp.com/
+3. Execute command below in the shell
+```
+`$ docker-compose up
+```
+4. Navigate to localhost:4001 in the browser
